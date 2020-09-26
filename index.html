@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+
+  <title>Code Quiz</title>
+  
+</head>
+<body>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-lg-3">
+            <div id = "scoreLink">
+                <a href="scores.html">View Highscores</a>
+            </div>
+        </div>
+        <div class = "col-lg-2">
+            <div id = "timer">
+                <h5></h5>
+            </div>
+        </div>
+    </div>
+
+    <div class = "row">
+        <div class = "col-lg-12">
+            <div id = "main"> 
+                <h1> CODING QUIZ CHALLENGE </h1>
+
+                <h3> This is a multiple choice coding quiz. There are 10 questions. 
+                    If you answer a question wrong, 5 seconds are deducted from your time.
+                    Try to answer all 10 questions in 100 seconds! 
+                </h3>
+        
+                <button id = "startBtn"> Start! </button>
+           </div> 
+        </div> 
+    </div>
+</div>
+
+
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+<!-- 1. Intro page
+    a. Explain the game. CHECK
+2. Create questions (10)
+    a. 10 points per question. 10/10 = 100% 
+    b. 100 seconds. Remaining time added to your score
+    c. The choices(4) should all be clickable
+    d. When you get a question right:
+        1. It displays "Correct"
+        2. It moves to the next question
+    e. When you get a question wrong:
+        1. It subtracts 5 from your time
+        2. It displays "Incorrect"
+        3. It displays the right answer
+        4. It moves to the next question
+3. A timer starts when "start" button is pressed
+    a. Time is subtracted when they get a question wrong. Display "-5 seconds?"
+    b. The time remaining when the game is over is added to the score
+    c. The game ends when the timer gets to 0
+4. A exit page 
+    a. "All Done/Congratulations" "This is your score."
+    b. Enter name and use that input for highscore
+    b. Button to view high scores
+4. A high score page
+    a. Tracks scores (local storage)
+    b. A "go back" button to go play the game again
+    c. Clear highscores button -->
