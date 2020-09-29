@@ -1,59 +1,144 @@
 var startBtn = document.querySelector("#startBtn");
 var currentPage = document.querySelector("#main")
-var answerBtn = document.createElement("BUTTON");
+var quizQ = document.querySelector("#quiz")
+
+var question = document.querySelector("#question")
+
+var choices = document.querySelector(".choices")
+
+var choiceA = document.createElement("button");
+    choiceA.setAttribute("id","choiceA");
+var choiceB = document.createElement("button");
+    choiceB.setAttribute("id","choiceB");
+var choiceC = document.createElement("button");
+    choiceC.setAttribute("id","choiceC");
+var choiceD = document.createElement("button");
+    choiceD.setAttribute("id","choiceD");
+
+var check = document.querySelector("#check")
+
+var timeEl = document.querySelector("#timer") 
+
+var secondsLeft = 10;
+var score = 0;
+var finalScore;
 
 var welcomePage;
 var endPage;
 var questions = [
 
 {
-    question: "Question1",
-    choice1: "a",
-    choice2: "b",
-    choice3: "c",
+    question: "What does CSS stand for?",
+    choiceA: "Cascading Style Sheet",
+    choiceB: "Cool Style Supplement",
+    choiceC: "Cascading Supplement Sheet",
+    choiceD: "Creative Style Sheet",
     answer: "A"
 },
 {
-    question: "Question2",
-    choice1: "a",
-    choice2: "b",
-    choice3: "c",
+    question: "With what symbol do you call an id?",
+    choiceA: "$",
+    choiceB: "#",
+    choiceC: ".",
+    choiceD: "*",
     answer: "B"
 },
 {
-    question: "Question3",
-    choice1: "a",
-    choice2: "b",
-    choice3: "c",
+    question: "jQuery is a library for what programming language?",
+    choiceA: "C++",
+    choiceB: "CSS",
+    choiceC: "Javascript",
+    choiceD: "Python",
     answer: "C"
 },
 {
-    question: "Question4",
-    choice1: "a",
-    choice2: "b",
-    choice3: "c",
-    answer: "A"
+    question: "A usefult tool for debugging is ___?",
+    choiceA: "for loop",
+    choiceB: "if/else statement",
+    choiceC: "addEventListener",
+    choiceD: "Console.log",
+    answer: "D"
 },
 {
-    question: "Question5",
-    choice1: "a",
-    choice2: "b",
-    choice3: "c",
+    question: "When styling elements in a CSS file, the style must be enclosed within ____?",
+    choiceA: "Parenthesis",
+    choiceB: "Curly Brackets",
+    choiceC: "Slashes",
+    choiceD: "Dashes",
     answer: "B"
 }
 
 ];
 
-var timeEl = document.querySelector("#timer") 
+var lastQuestion = questions.length - 1;
 
-secondsLeft = 10;
+
+currentQuestion = 0;
+
+function questionFunc() {
+    var q = questions[currentQuestion];
+
+    question.innerHTML = q.question;
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+}
+
+function quiz() {
+    currentPage.textContent = "";
+    currentPage.append(quizQ)
+
+    choices.appendChild(choiceA)
+    choices.appendChild(choiceB)
+    choices.appendChild(choiceC)
+    choices.appendChild(choiceD)
+
+    choices.addEventListener("click", function() {
+        checkAnswer();
+        currentQuestion++;
+    })
+}
+
+function checkAnswer () {
+    if (questions[currentQuestion].answer) {
+        check.textContent = "Correct"
+        score = score + 10;
+    }
+    else {
+        check.textContent = "Wrong"
+        score = score - 10;
+        secondsLeft = secondsLeft - 5;
+    }
+
+    if (currentQuestion < lastQuestion) {
+        questionFunc();
+    }
+    else {
+        endOfGame();
+    }
+
+}
+
+startBtn.addEventListener("click", function() {
+    setTime();
+    questionFunc();
+    quiz();
+});
 
 function endOfGame() {
+    finalScore = score + secondsLeft;
     timeEl.textContent = "";
-    endPage = currentPage;
-    endPage.textContent = "Time's Up! Congratulations! Your score is: ";
+    currentPage.textContent ="";
 
-    endPage.setAttribute("style", "font-size: 65px; color:blue;");
+    endPage = currentPage;
+
+    endPage.append("Time's Up! \n Congratulations! Your score is: " + finalScore)
+    endPage.append(". Enter your name and press submit to save your score!")
+    endPage.append(userName)
+    endPage.append(submitBtn)
+
+    endPage.setAttribute("style", "font-size: 50px; color:blue;");
   }
 
 function setTime() {
@@ -68,52 +153,62 @@ function setTime() {
     }, 1000);
   }
 
-currentQuestion = 0;
+var userName = document.createElement("input");
+userName.setAttribute("type", "text");
+userName.setAttribute("placeholder", "Your Name");
+userName.setAttribute("id","userName");
 
-function questionFunc() {
-    let q = questions[currentQuestion];
-    question.innerHTML = q.question;
-    choice1Btn.innerHTML = q.choice1;
-    choice2Btn.innerHTML = q.choice2;
-    choice3Btn.innerHTML = q.choice3;
-    console.log('choice3Btn:', choice3Btn)
+var submitBtn = document.createElement("button"); 
+submitBtn.textContent = "Submit";
+submitBtn.setAttribute("id","submitBtn");
 
+var nameList = [];
 
+var newName = userName.value;
 
-    var answerBtn = document.createElement("BUTTON");
-
-    var text = document.createTextNode( " " + JSON.stringify(choices[j] + " "));
-
-    answerBtn.append(text);
-
-    currentPage.append(answerBtn);
-
-
-
-  currentPage.textContent = "";
-
-
-      for (var i = 0; i < questions.length; i++) {
-        var choices = Object.values(questions[i]) 
-
-        for (var j = 1; j < choices.length; j++) {
-
-
-        }
-
-        answerBtn.addEventListener("click", function(event) {
-          var element = event.target;
-          if (element.matches(button)===true) {
-
-          }
-        })
-
-      }
+function renderScore() {
+    for (var i = 0; i < nameList.length; i++) {
+        var newScore = nameList[i];
+    
+        var li = document.createElement("li");
+        li.textContent = newName + ": " + newScore;
+        li.setAttribute("data-index", i);
+    
+        scores.appendChild(li);
+    }
 }
 
+function getInput() {
+    scores.innerHTML = "";
+    // window.location.href = "scores.html"
+}  
 
-startBtn.addEventListener("click", function() {
-    setTime();
-    questionFunc();
+function storeNames() {
+  localStorage.setItem("nameList", JSON.stringify(nameList));
+}
+
+function init() {
+  var storedNames = JSON.parse(localStorage.getItem("nameList"));
+
+  if (storedNames !== null) {
+    nameList = storedNames;
+  }
+
+  renderScore();
+}
+
+submitBtn.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (newName === "") {
+    return;
+  }
+
+  nameList.push(newName);
+  userName.value = "";
+
+  getInput(), false;
+  storeNames();
+  renderScore();
+  init();
 });
-

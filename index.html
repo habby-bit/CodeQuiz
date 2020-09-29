@@ -31,15 +31,27 @@
             <div id = "main"> 
                 <h1> CODING QUIZ CHALLENGE </h1>
 
-                <h3> This is a multiple choice coding quiz. There are 10 questions. 
+                <h3> This is a multiple choice coding quiz. There are 5 questions. 
                     If you answer a question wrong, 5 seconds are deducted from your time.
                     Try to answer all 10 questions in 100 seconds! 
                 </h3>
-        
-                <button id = "startBtn"> Start! </button>
+
+                <button type="button" class="btn" id = "startBtn">Start!</button>
+
            </div> 
         </div> 
     </div>
+</div>
+
+<div id="quiz">
+    <div id="question"></div>
+    <div class = "choices">
+        <div class="choice" onclick="checkAnswer('A')"></div>
+        <div class="choice" onclick="checkAnswer('B')"></div>
+        <div class="choice" onclick="checkAnswer('C')"></div>
+        <div class="choice" onclick="checkAnswer('D')"></div>
+    </div>
+    <div id="check"></div>
 </div>
 
 

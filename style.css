@@ -4,10 +4,92 @@
 
 #main {
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     margin: 100px;
 }
 
+h1 {
+    margin-bottom: 15px;
+}
+
 #startBtn {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 20px;
     color: white;
     background-color: blueviolet;
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+#scoreLink {
+   margin-top: 5px;
+   margin-left: 0px;
+}
+
+input {
+    margin: 20px;
+}
+
+#question {
+    font-size: 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    margin-bottom: 10px;
+}
+
+#choiceA, 
+#choiceB, 
+#choiceC, 
+#choiceD {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color: white;
+    background-color: blueviolet;
+    width: 300px;
+    height: 40px;
+    margin: 5px;
+}
+
+#check {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color: gray;
+    margin-top: 10px;
+}
+
+#userName {
+    font-size: 20px;
+    width: 250px;
+    height: 50px;
+}
+
+#submitBtn {
+    font-size: 20px;
+    color: white;
+    background-color: blueviolet;
+    width: 100px;
+    height: 50px;
+}
+
+#highscores{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+#newScores{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+#playAgain,
+#clearScores {
+    width: 150px;
+    color: white;
+    border-radius: 50px;
+    background-color: blueviolet;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+#scoreContainer {
+    margin-top: 100px;
 }
