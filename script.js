@@ -19,7 +19,7 @@ var check = document.querySelector("#check")
 
 var timeEl = document.querySelector("#timer") 
 
-var secondsLeft = 10;
+var secondsLeft = 60;
 var score = 0;
 var finalScore;
 
@@ -72,8 +72,9 @@ var questions = [
 
 var lastQuestion = questions.length - 1;
 
-
 currentQuestion = 0;
+
+// Renders the next question
 
 function questionFunc() {
     var q = questions[currentQuestion];
@@ -85,22 +86,48 @@ function questionFunc() {
     choiceD.innerHTML = q.choiceD;
 }
 
+// Run the quiz
+
 function quiz() {
     currentPage.textContent = "";
     currentPage.append(quizQ)
 
+    choiceA.setAttribute("value", "A")
     choices.appendChild(choiceA)
+
+    choiceB.setAttribute("value", "B")
     choices.appendChild(choiceB)
+
+    choiceC.setAttribute("value", "C")
     choices.appendChild(choiceC)
+
+    choiceD.setAttribute("value", "D")
     choices.appendChild(choiceD)
 
-    choices.addEventListener("click", function() {
+    choiceA.addEventListener("click", function() {
+        checkAnswer();
+        currentQuestion++;
+    })
+
+    choiceB.addEventListener("click", function() {
+        checkAnswer();
+        currentQuestion++;
+    })
+
+    choiceC.addEventListener("click", function() {
+        checkAnswer();
+        currentQuestion++;
+    })
+
+    choiceD.addEventListener("click", function() {
         checkAnswer();
         currentQuestion++;
     })
 }
 
-function checkAnswer () {
+// Checks the answer that the user clicked
+
+function checkAnswer() {
     if (questions[currentQuestion].answer) {
         check.textContent = "Correct"
         score = score + 10;
@@ -117,14 +144,17 @@ function checkAnswer () {
     else {
         endOfGame();
     }
-
 }
+
+// Start button to begin the quiz
 
 startBtn.addEventListener("click", function() {
     setTime();
     questionFunc();
     quiz();
 });
+
+// Switches to the final page the user sees
 
 function endOfGame() {
     finalScore = score + secondsLeft;
@@ -133,13 +163,16 @@ function endOfGame() {
 
     endPage = currentPage;
 
-    endPage.append("Time's Up! \n Congratulations! Your score is: " + finalScore)
-    endPage.append(". Enter your name and press submit to save your score!")
+    endPage.append("Time's Up! \n Congratulations! Your score is: " 
+                    + finalScore + "\n Enter your name and press submit to save your score!")
     endPage.append(userName)
     endPage.append(submitBtn)
 
-    endPage.setAttribute("style", "font-size: 50px; color:blue;");
+    endPage.setAttribute("style", "font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif");
+    endPage.setAttribute("style", "font-size: 35px; color:blueviolet;");
   }
+
+// Crete and implement timer
 
 function setTime() {
     var timerInterval = setInterval(function() {
@@ -152,6 +185,8 @@ function setTime() {
         }
     }, 1000);
   }
+
+// Creating the Submit Button and user name input box
 
 var userName = document.createElement("input");
 userName.setAttribute("type", "text");
@@ -166,6 +201,8 @@ var nameList = [];
 
 var newName = userName.value;
 
+// Set new scores in scores.html
+
 function renderScore() {
     for (var i = 0; i < nameList.length; i++) {
         var newScore = nameList[i];
@@ -178,15 +215,18 @@ function renderScore() {
     }
 }
 
+// Get user name input
 function getInput() {
     scores.innerHTML = "";
-    // window.location.href = "scores.html"
+    window.location.href = "scores.html"
 }  
 
+// Store each name in local storage
 function storeNames() {
   localStorage.setItem("nameList", JSON.stringify(nameList));
 }
 
+// Check if the highscores list is updated
 function init() {
   var storedNames = JSON.parse(localStorage.getItem("nameList"));
 
@@ -196,6 +236,8 @@ function init() {
 
   renderScore();
 }
+
+// Store and submit the name and score of the player
 
 submitBtn.addEventListener("submit", function(event) {
   event.preventDefault();
